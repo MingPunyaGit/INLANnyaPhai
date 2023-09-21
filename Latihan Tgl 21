@@ -1,0 +1,43 @@
+S1(config)# vlan 10
+S1(config-vlan)# name Faculty/Staff
+S1(config-vlan)# exit
+
+S1(config)# vlan 20
+S1(config-vlan)# name Students
+S1(config-vlan)# exit
+
+S1(config)# vlan 30
+S1(config-vlan)# name Guest(Default)
+S1(config-vlan)# exit
+
+S1(config)# vlan 88
+S1(config-vlan)# name Native
+S1(config-vlan)# exit
+
+S1(config)# vlan 99
+S1(config-vlan)# name Management
+S1(config-vlan)# exit
+
+S1(config)# interface range FastEthernet0/11 - 17
+S1(config-if-range)# switchport mode access
+S1(config-if-range)# switchport access vlan 10
+S1(config-if-range)# exit
+
+S1(config)# interface range FastEthernet0/18 - 24
+S1(config-if-range)# switchport mode access
+S1(config-if-range)# switchport access vlan 20
+S1(config-if-range)# exit
+
+S1(config)# interface range FastEthernet0/6 - 10
+S1(config-if-range)# switchport mode access
+S1(config-if-range)# switchport access vlan 30
+S1(config-if-range)# exit
+
+S1(config)# interface GigabitEthernet0/1
+S1(config-if)# switchport mode trunk
+S1(config-if)# switchport trunk native vlan 88
+S1(config-if)# exit
+
+S1(config)# interface range FastEthernet0/1 - 5
+S1(config-if-range)# shutdown
+S1(config-if-range)# exit
